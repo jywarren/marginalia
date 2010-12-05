@@ -1,0 +1,303 @@
+# Logfile created on Sat Dec 04 19:51:13 -0500 2010  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (133.0ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (217.8ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateLocations (20091008195613)
+  [4;36;1mSQL (78.4ms)[0m   [0;1mCREATE TABLE `locations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `ip` varchar(255) DEFAULT '', `countryname` varchar(255) DEFAULT '', `regionname` varchar(255) DEFAULT '', `city` varchar(255) DEFAULT '', `zipcode` varchar(255) DEFAULT '', `lat` decimal(20,10) DEFAULT 0.0, `lon` decimal(20,10) DEFAULT 0.0, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (41.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091008195613')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `locations`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `locations`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#article (for 206.29.188.228 at 2010-12-04 19:59:29) [GET]
+  Parameters: {"title"=>"mit_media_lab"}
+
+MissingSourceFile (no such file to load -- json):
+  app/controllers/proxy_controller.rb:1
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (20.2ms)
+Rendered rescues/_request_and_response (0.7ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProxyController#article (for 206.29.188.228 at 2010-12-04 20:00:23) [GET]
+  Parameters: {"title"=>"mit_media_lab"}
+
+Gem::LoadError (Could not find RubyGem httparty (>= 0)
+):
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/site_ruby/1.8/rubygems.rb:779:in `report_activate_error'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/site_ruby/1.8/rubygems.rb:214:in `activate'
+  /home/warren/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/site_ruby/1.8/rubygems.rb:1082:in `gem'
+  lib/geonames.rb:1
+  app/controllers/proxy_controller.rb:10:in `article'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (28.3ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProxyController#article (for 206.29.188.228 at 2010-12-04 20:01:15) [GET]
+  Parameters: {"title"=>"mit_media_lab"}
+
+MissingSourceFile (no such file to load -- geokit):
+  lib/geonames.rb:3
+  app/controllers/proxy_controller.rb:10:in `article'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (53.1ms)
+Rendered rescues/_request_and_response (0.8ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProxyController#article (for 206.29.188.228 at 2010-12-04 20:01:40) [GET]
+  Parameters: {"title"=>"mit_media_lab"}
+Rendering proxy/article
+Rendered module/_geocoder (1.6ms)
+Rendered module/_authorbar (1.1ms)
+Rendered module/_inkdrying (1.1ms)
+Rendered module/_map (0.8ms)
+Completed in 924ms (View: 26, DB: 0) | 200 OK [http://marginalia.publiclaboratory.org/wiki/mit_media_lab]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing DataController#authors (for 206.29.188.228 at 2010-12-04 20:01:48) [GET]
+  Parameters: {"id"=>"mit_media_lab"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  lib/marginalia.rb:35:in `revisions'
+  lib/marginalia.rb:104:in `authors'
+  app/controllers/data_controller.rb:25:in `authors'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+
+
+Processing DataController#diff (for 206.29.188.228 at 2010-12-04 20:01:48) [GET]
+  Parameters: {"id"=>"mit_media_lab"}
+Rendered rescues/_trace (37.2ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  lib/marginalia.rb:35:in `revisions'
+  lib/marginalia.rb:39:in `diff'
+  app/controllers/data_controller.rb:9:in `diff'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (51.6ms)
+Rendered rescues/_request_and_response (0.8ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProxyController#article (for 206.29.188.228 at 2010-12-04 20:03:57) [GET]
+  Parameters: {"title"=>"mit_media_lab"}
+Rendering proxy/article
+Rendered module/_geocoder (1.1ms)
+Rendered module/_authorbar (1.2ms)
+Rendered module/_inkdrying (1.1ms)
+Rendered module/_map (0.8ms)
+Completed in 1115ms (View: 24, DB: 0) | 200 OK [http://marginalia.publiclaboratory.org/wiki/mit_media_lab]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing DataController#authors (for 206.29.188.228 at 2010-12-04 20:04:01) [GET]
+  Parameters: {"id"=>"mit_media_lab"}
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  lib/marginalia.rb:35:in `revisions'
+  lib/marginalia.rb:104:in `authors'
+  app/controllers/data_controller.rb:25:in `authors'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (20.9ms)
+Rendered rescues/_request_and_response (0.7ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing DataController#diff (for 206.29.188.228 at 2010-12-04 20:04:02) [GET]
+  Parameters: {"id"=>"mit_media_lab"}
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  lib/marginalia.rb:35:in `revisions'
+  lib/marginalia.rb:39:in `diff'
+  app/controllers/data_controller.rb:9:in `diff'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/warren/.passenger/standalone/3.0.0-x86_64-ruby1.8.7-linux-gcc4.4.5-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (22.5ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)

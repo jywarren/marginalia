@@ -17,7 +17,7 @@ class Marginalia
                 :rvlimit => size,
                 :format => 'xml',
                 :redirects => true}
-    document = self.get('/w/api.php', :query => options)
+    document = self.get('/w/api.php', :query => options, :options => { "User-Agent" => "Marginalia" })
   end
   
   def self.revisions(title,size = 500,diff = false)
