@@ -13,7 +13,7 @@ class ProxyController < ApplicationController
     end
 
     url = URI.parse(params[:url])
-    req = Net::HTTP::Get.new(url.path)
+    req = Net::HTTP::Get.new(url.path, {"User-Agent" => "Marginalia"})
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
     }
@@ -46,7 +46,7 @@ class ProxyController < ApplicationController
       puts 'getting new location for '+ip.to_s
       url = 'http://freegeoip.appspot.com/json/'+ip
       url = URI.parse(url)
-      req = Net::HTTP::Get.new(url.path)
+      req = Net::HTTP::Get.new(url.path, {"User-Agent" => "Marginalia"})
       res = Net::HTTP.start(url.host, url.port) {|http|
         http.request(req)
       }

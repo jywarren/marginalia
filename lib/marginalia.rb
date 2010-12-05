@@ -17,7 +17,7 @@ class Marginalia
                 :rvlimit => size,
                 :format => 'xml',
                 :redirects => true}
-    document = self.get('/w/api.php', :query => options, :options => { "User-Agent" => "Marginalia" })
+    document = self.get('/w/api.php', :query => options, :headers => { "User-Agent" => "Marginalia" })
   end
   
   def self.revisions(title,size = 500,diff = false)
@@ -31,7 +31,10 @@ class Marginalia
 	if diff
 		options[:rvdiffto] = 'prev'
 	end
-    document = self.get('/w/api.php', :query => options)
+    document = self.get('/w/api.php', :query => options, :headers => { "User-Agent" => "Marginalia" })
+	#puts '###################################################'
+	#puts document.inspect
+	#puts '###################################################'
     document['api']['query']['pages']['page']['revisions']['rev']
   end
   
@@ -200,7 +203,7 @@ class Marginalia
                 :list => 'users',
                 :format => 'xml',
                 :usprop => 'blockinfo|registration|emailable|groups|editcount|gender'}
-    document = self.get('/w/api.php', :query => options)
+    document = self.get('/w/api.php', :query => options, :headers => { "User-Agent" => "Marginalia" })
     document['api']['query']['users']['user']
   end
   
@@ -213,7 +216,7 @@ class Marginalia
                 :list => 'usercontribs',
                 :format => 'xml',
                 :ucprop => 'ids|title|timestamp|comment|size|flags'}
-    document = self.get('/w/api.php', :query => options)
+    document = self.get('/w/api.php', :query => options, :headers => { "User-Agent" => "Marginalia" })
     document['api']['query']['usercontribs']['item']
   end
 
