@@ -1,15 +1,16 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Marginalia</title>
-
-	<!-- Date: 2009-08-18 -->
-	<script src="javascripts/prototype.js" type="text/javascript" charset="utf-8"></script>
+   "http://www.w3.org/TR/html4/loose.dtd"> 
+ 
+<html lang="en"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<title>Marginalia</title> 
+ 
+	<!-- Date: 2009-08-18 --> 
+	<script src="javascripts/prototype.js" type="text/javascript" charset="utf-8"></script> 
 	
-	<style type="text/css" media="screen">
+	<style type="text/css" media="screen"> 
 		html {
 			margin:0;
 			background:#333;
@@ -35,31 +36,38 @@
 		#query input {
 			font-size: 1.2em;
 		}
-	</style>
-
-
-</head>
-<body>
+	</style> 
+ 
+ 
+</head> 
+<body> 
 	
-		<h2>Marginalia</h2>
+		<h2>Marginalia</h2> 
 	
-		<p><b>by John Kestner (Information Ecology), Jeffrey Warren (Design Ecology) of the MIT Media Lab</b></p>
+		<p><b>by John Kestner (Information Ecology), Jeffrey Warren (Design Ecology) of the MIT Media Lab</b></p> 
 	
-		<p>Even the most open content system is only as transparent as its interface. Taking cues from the timeless activity of annotating the margins of books, Marginalia provides a visual overlay for analyzing Wikipedia articles. Employing a number of different visualizations, users can browse Wikipedia with a critical eye for who authored each section, how contentious an article or topic is, or the geographic diversity of the authors. Marginalia pulls back the curtains on the collaborative authorship process, and has broader applications in the critical reading of online works.	</p>
+		<p>Even the most open content system is only as transparent as its interface. Taking cues from the timeless activity of annotating the margins of books, Marginalia provides a visual overlay for analyzing Wikipedia articles. Employing a number of different visualizations, users can browse Wikipedia with a critical eye for who authored each section, how contentious an article or topic is, or the geographic diversity of the authors. Marginalia pulls back the curtains on the collaborative authorship process, and has broader applications in the critical reading of online works.	</p> 
 	
-		<script type="text/javascript" charset="utf-8">
+		<script type="text/javascript" charset="utf-8"> 
 			function find(q) {
 				q = q.gsub(/ /,'_')
 				document.location = "/wiki/"+q
 			}
-		</script>
-		<p><form id="query" action="javascript:void(0);" method="get" accept-charset="utf-8" onSubmit="find($('find_field').value)">
-			Browse Wikipedia: <br />
-			<input id="find_field" style="width:300px;" tabindex="3" type="text" name="id" value="">
-			<input type="button" name="some_name" tabindex="4" value="Go">
-		</form></p>
+		</script> 
+		<p><form id="query" action="javascript:void(0);" method="get" accept-charset="utf-8" onSubmit="find($('find_field').value)"> 
+			Browse Wikipedia: <br /> 
+			<input id="find_field" style="width:300px;" tabindex="3" type="text" name="id" value=""> 
+			<input type="button" name="some_name" tabindex="4" value="Go"> 
+		</form></p> 
 		
-	</form>
-
-</body>
-</html>
+		<h3>Bookmarklet:</h3> 
+		<p> 
+		Or drag this bookmarklet into your browser bookmarks bar, and click it to activate Marginalia when you're on a Wikipedia page:
+		</p>		
+		<p><a href="javascript:var l = location.href.split('/');l = l[l.length-1];location.href = 'http://marginalia.media.mit.edu/wiki/'+l"><img src="bookmarklet.png" width="76" height="18" alt="marginalize"></a> 
+		</p> 
+		
+	</form> 
+ 
+</body> 
+</html> 
