@@ -1,0 +1,116 @@
+Marginalia.Modules.AuthorBar = {
+	x: 2,
+	y: 52,
+	showIP: false,
+	authors: {
+		all: [],
+		anon: [],
+		bots: [],
+		sysops: [],
+		users: [],
+	},
+	initialize: function() {
+		$l('booting AuthorBar')
+		Marginalia.Data.authors.each(function(author,index) {
+			var bar = new Marginalia.Modules.AuthorBar.Bar(author)
+		})
+	},
+	draw: function() {
+		$C.save()
+			var height = Marginalia.Modules.AuthorBar.y
+				$C.draw_text('georgia', 12, '#222', 0, height+14, 'Sysops')
+			height += 20
+			Marginalia.Modules.AuthorBar.authors.sysops.each(function(author,index) {
+				author.draw(Marginalia.Modules.AuthorBar.x,5*index+height)
+			})
+			height += 5*Marginalia.Modules.AuthorBar.authors.sysops.length+4
+				$C.draw_text('georgia', 12, '#222', 0, height+14, 'Users')
+				height += 20
+			Marginalia.Modules.AuthorBar.authors.users.each(function(author,index) {
+				author.draw(Marginalia.Modules.AuthorBar.x,5*index+height)
+			})
+			height += 5*Marginalia.Modules.AuthorBar.authors.users.length+4
+				$C.draw_text('georgia', 12, '#222', 0, height+14, 'Anonymous')
+				height += 20
+			Marginalia.Modules.AuthorBar.authors.anon.each(function(author,index) {
+				author.draw(Marginalia.Modules.AuthorBar.x,5*index+height)
+			})
+			height += 5*Marginalia.Modules.AuthorBar.authors.anon.length+4
+				$C.draw_text('georgia', 12, '#222', 0, height+14, 'Bots')
+				height += 20
+			Marginalia.Modules.AuthorBar.authors.bots.each(function(author,index) {
+				author.draw(Marginalia.Modules.AuthorBar.x,5*index+height)
+			})
+		$C.restore()
+	},
+ 	Bar: Class.create({
+		initialize: function(author) {
+			this.author = author
+		
+			this.height = 4
+			this.width = 3*author['revs']
+			this.opacity = Math.log(author['editcount'])/10
+			this.rotation = 0
+			Marginalia.Modules.AuthorBar.authors.all.push(this)	
+			if (author['anon']) {
+				this.fill = '#900'
+				Marginalia.Modules.AuthorBar.authors.anon.push(this)	
+			} else if (author['bot']) {
+				this.fill = '#00a'
+				Marginalia.Modules.AuthorBar.authors.bots.push(this)
+			} else if (author['sysop']) {
+				this.fill = '#0a0'
+				Marginalia.Modules.AuthorBar.authors.sysops.push(this)
+			} else {
+				this.fill = '#000'
+				Marginalia.Modules.AuthorBar.authors.users.push(this)
+			}				
+			this.text = ''
+			Environment.observe('mousemove',this.on_hover.bind(this))
+			Environment.observe('mouseup',this.on_click.bind(this))
+		},
+		draw: function(x,y) {
+			this.x = x // for hover detection
+			this.y = y
+			$C.save()
+			$C.translate(x,y)
+			$C.rotate(this.rotation)
+				$C.fill_style(this.fill)
+				$C.opacity(this.opacity)
+				$C.rect(0,0,this.width,this.height)
+				if (this.text != '') {
+					$C.translate(this.width+2,this.height+4)
+					$C.fill_style('rgba(255,255,255,0.6)')
+					$C.rect(-2,-8-2,$C.measure_text('georgia', 8, this.text)+4,12)
+					$C.fill_style('#222')
+					$C.draw_text('georgia', 8, this.fill, 0, 0, this.text)
+				}
+			$C.restore()
+		},
+		on_hover: function(event) {
+			if (this.x <= event.clientX && event.clientX <= this.x+this.width+10 && this.y <= event.clientY && event.clientY <= this.y+this.height)
+				if (this.author['anon']) {
+					this.text = 'anon'
+					if (this.author['location'] && !Marginalia.Modules.AuthorBar.showIP) {
+						this.text += ' in '+this.author['location']['city']+', '+this.author['location']['countryname']
+					}
+					else {
+						this.text += ' at '+this.author['user']
+					}
+				} else {
+					this.text = this.author['user'] + ', ' + this.author['editcount'] + ' total edits'
+					console.log(this.text)
+				}
+			else {
+				this.text = ''
+			}
+		},
+		on_click: function(event) {
+			if (this.x <= event.clientX && event.clientX <= this.x+this.width+10 && this.y <= event.clientY && event.clientY <= this.y+this.height)
+				if (this.author['anon'])
+					Marginalia.Modules.AuthorBar.showIP = !Marginalia.Modules.AuthorBar.showIP
+				else
+					window.parent.location='/wiki/User:'+this.author['user'].gsub(/ /, '_')
+		}
+	})
+}

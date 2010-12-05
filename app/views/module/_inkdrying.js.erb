@@ -1,0 +1,114 @@
+Marginalia.Modules.InkDrying = {
+	x: 2,
+	y: 52,
+	months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+	MILLIS_MONTH: 2678400000,
+	passages: [],
+	initialize: function() {
+		$l('booting InkDrying')
+		Marginalia.Data.diffs.each(function(diff,index) {
+			var passage = new Marginalia.Modules.InkDrying.Passage(diff)
+		})
+	},
+	scaleForTime: function(timestamp) {
+		chartHeight = 800  // set to desired height of chart, in px
+		scaleV = 3		   // number of months to display in that height
+		now = new Date()
+		if (Marginalia.Modules.InkDrying.passages.length > 0) {
+			lastPassage = Marginalia.Modules.InkDrying.passages.last()
+			scaleV = ((now.getTime()-lastPassage.timestamp) / this.MILLIS_MONTH)
+		}
+		return chartHeight * ((now.getTime()-timestamp) / this.MILLIS_MONTH) / scaleV
+	},
+	draw: function() {
+		$C.save()
+			var height = Marginalia.Modules.InkDrying.y
+				$C.draw_text('georgia', 12, '#222', 1000-$C.measure_text('georgia', 12, 'Timeline'), height+14, 'Timeline')
+			height += 25
+			now = new Date()
+			if (Marginalia.Modules.InkDrying.passages.length > 0) {
+				Marginalia.Modules.InkDrying.drawScale(height)
+				Marginalia.Modules.InkDrying.passages.each(function(passage,index) {
+					y = Marginalia.Modules.InkDrying.scaleForTime(passage.timestamp)
+					passage.draw(1000-38,height+y)
+				})
+			}
+		$C.restore()
+	},
+	drawScale: function(h) {
+		$C.draw_text('georgia', 8, '#222', 1000-35, h+4, 'now')
+		// red line to show how far back we are reading
+		y_last = Marginalia.Modules.InkDrying.scaleForTime(Marginalia.Modules.InkDrying.passages.last().timestamp)
+		label = 'last '+Marginalia.Modules.InkDrying.passages.length+' adds'
+		$C.draw_text('georgia', 8, '#349', 1000-$C.measure_text('georgia', 8, label), h+y_last+12, label)
+
+		y_month = Marginalia.Modules.InkDrying.scaleForTime(now.getTime()-this.MILLIS_MONTH)  // how many pixels is a month?
+		if (y_month < 200) { 
+			for (var i=0;i<18;i++) {
+				mo = new Date(now.getFullYear(),now.getMonth()-i,1)
+				y = Marginalia.Modules.InkDrying.scaleForTime(mo.getTime())
+				if (y > 10 && y < y_last-20)
+					$C.draw_text('georgia', 8, '#222', 1000-35, h+4+y, this.months[mo.getMonth()])
+			}
+		}
+		else {
+			for (var i=0;i<12;i++) {
+				da = new Date(now.getFullYear(),now.getMonth(),now.getDate()-i*7)
+				y = Marginalia.Modules.InkDrying.scaleForTime(da.getTime())
+				if (y > 10 && y < y_last-20)
+					$C.draw_text('georgia', 8, '#222', 1000-35, h+4+y, this.months[da.getMonth()]+' '+da.getDate() )
+			}
+		}
+	},
+ 	Passage: Class.create({
+		initialize: function(diff) {
+			this.author = diff['author']
+			this.edit_id = diff['id']
+			this.adds = diff['adds']
+			this.timestamp = diff['timestamp']*1000
+			this.text = diff['text']
+		
+			this.height = 2 * (Math.log(this.adds.length)+1)
+			this.width = Math.log( this.adds.inspect().length/this.height )*10  //get an area of edits' size
+			this.fill = '#000'
+			this.opacity = .2 //Math.log(author['editcount'])/10
+			this.rotation = 0
+			Marginalia.Modules.InkDrying.passages.push(this)
+
+			Environment.observe('mousemove',this.on_hover.bind(this))
+			Environment.observe('mouseup',this.on_click.bind(this))
+		},
+		draw: function(x,y) {
+			this.x = x // for hover detection
+			this.y = y
+			$C.save()
+			$C.translate(x,y)
+			$C.rotate(this.rotation)
+				$C.fill_style(this.fill)
+				$C.opacity(this.opacity)
+				$C.rect(0,0,-this.width,-this.height)
+			/*	if (this.text != '') {
+					$C.translate(this.width+2,this.height+4)
+					$C.fill_style('rgba(255,255,255,0.6)')
+					$C.rect(-2,-8-2,$C.measure_text('georgia', 8, this.text)+4,12)
+					$C.fill_style('#222')
+					$C.draw_text('georgia', 8, this.fill, 0, 0, this.text)
+				}*/
+			$C.restore()
+		},
+		on_hover: function(event) {
+			if (this.x >= event.clientX && event.clientX >= this.x-this.width-10 && this.y >= event.clientY && event.clientY >= this.y-this.height) {
+				this.fill = '#349'
+				this.opacity = 0.7
+			}
+			else {
+				this.fill = '#000'
+				this.opacity = 0.2
+			}
+		},
+		on_click: function(event) {
+			if (this.x >= event.clientX && event.clientX >= this.x-this.width-10 && this.y >= event.clientY && event.clientY >= this.y-this.height)
+				window.parent.location='http://en.wikipedia.org/w/index.php?title='+Marginalia.title.gsub(/ /, '_')+'&diff=prev&oldid='+this.edit_id
+		}
+	})
+}

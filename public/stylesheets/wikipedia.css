@@ -1,0 +1,87 @@
+html {
+	width:1000px;
+}
+img { border:0; }
+
+canvas {
+	width:1000px;
+	position: absolute;
+	top:0; left:0;
+	z-index:0;
+/*	background:#ccc;*/
+}
+
+body {
+	background:url('/images/world.png') top center no-repeat;
+	font-size:0.9em;
+	width:500px;
+	margin:0 auto;
+	font-family:georgia;
+}
+
+a {
+	color:#a40;
+}
+a:hover {
+	color:#820;
+}
+
+#globalWrapper {
+	position:absolute;
+	top: 300px;
+	z-index:2;
+}
+
+ul {
+	font-size:0.8em;
+}
+ul li {
+	list-style:square;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:normal;
+	font-style:italic;
+}
+
+h1 {
+	font-size:3em;
+	margin-bottom:0;
+}
+
+p {
+	font-size:0.8em;
+}
+
+table.metadata {
+	padding:3px;
+	font-size:0.8em;
+	border:2px solid #ECD3B5;
+	background: #F6E3CF;
+	width:100%;
+	margin:4px 0;
+}
+
+#jump-to-nav {display:none;}
+
+.thumb {
+	clear:right;
+	padding:12px;
+	font-size:0.7em;
+	float:right;
+}
+
+table#toc {
+	border:1px solid #ccc;
+	padding:8px;
+}
+table#toc h2 {
+	margin-top:0;
+}
+table#toc ul {
+	margin:0;
+	padding:0;
+}
+table#toc ul li {
+	list-style:none;
+}

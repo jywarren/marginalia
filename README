@@ -1,0 +1,10 @@
+                           _             _ _       
+ _ __ ___   __ _ _ __ __ _(_)_ __   __ _| (_) __ _ 
+| '_ ` _ \ / _` | '__/ _` | | '_ \ / _` | | |/ _` |
+| | | | | | (_| | | | (_| | | | | | (_| | | | (_| |
+|_| |_| |_|\__,_|_|  \__, |_|_| |_|\__,_|_|_|\__,_|
+                     |___/                         
+
+By John Kestner and Jeffrey Warren, while at the MIT Media Lab
+
+Even the most open content system is only as transparent as its interface. Taking cues from the timeless activity of annotating the margins of books, Marginalia provides a visual overlay for analyzing Wikipedia articles. Employing a number of different visualizations, users can browse Wikipedia with a critical eye for who authored each section, how contentious an article or topic is, or the geographic diversity of the authors. Marginalia pulls back the curtains on the collaborative authorship process, and has broader applications in the critical reading of online works.

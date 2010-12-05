@@ -1,0 +1,103 @@
+<%= @body %>
+
+<div id='marginalia'>
+	<h3>You're viewing this page through <a href='http://marginalia.media.mit.edu'>Marginalia</a></h3>
+</div>
+
+<link rel="stylesheet" href="/stylesheets/marginalia.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="/stylesheets/wikipedia.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<canvas id='canvas'></canvas>
+<script src="/glop/environment.js" type="text/javascript" charset="utf-8"></script>
+<script src="/projection.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+
+		// Initialize our project:
+		Environment.setup({
+			width:1000,
+			height:Glop.height,
+			resizable:false
+		})
+
+		var Marginalia = {
+			title: '<%= @title %>',
+			<% if @location %>article: {lat:<%= @location[:lat] %>,lon:<%= @location[:lon] %>},<% end %>
+			// Easier event listening:
+			// Manually fires an event in the format 'namespace:event', i.e. 'data:authors'
+			fire: function(e) {
+				$l(e)
+				$('canvas').fire(e)
+			},
+			// Listens for an event in the format 'namespace:event', i.e. 'data:authors'
+			observe: function(e,callback) {
+				$l(e)
+				$('canvas').observe(e,callback)
+			},
+		}
+		
+		// storage of actual modules. capitalized because it's a namespace
+		// not an array anymore
+		Marginalia.Modules = {}
+		
+		Marginalia.Data = {
+			authors: [],
+			diffs: [],
+			initialize: function() {
+				// get author information for given title
+				new Ajax.Request('/data/authors/'+Marginalia.title,{
+					method: 'get',
+					onSuccess: function(response) {
+						Marginalia.Data.authors = response.responseText.evalJSON()
+						Marginalia.fire('data:authors')
+					}
+				})			
+				// get diff information for given title
+				new Ajax.Request('/data/diff/'+Marginalia.title,{
+					method: 'get',
+					onSuccess: function(response) {
+						Marginalia.Data.diffs = response.responseText.evalJSON()
+						Marginalia.fire('data:diff')
+					}
+				})			
+			},
+		}
+
+		<%= render :partial => 'module/geocoder.js.erb' %>
+
+		<%= render :partial => 'module/authorbar.js.erb' %>
+		Marginalia.observe('data:authors',Marginalia.Modules.AuthorBar.initialize)
+		Marginalia.observe('glop:postdraw',Marginalia.Modules.AuthorBar.draw)
+		<%= render :partial => 'module/inkdrying.js.erb' %>
+		Marginalia.observe('data:diff',Marginalia.Modules.InkDrying.initialize)
+		Marginalia.observe('glop:postdraw',Marginalia.Modules.InkDrying.draw)
+		<%= render :partial => 'module/map.js.erb' %>
+		Marginalia.observe('data:authors',Marginalia.Modules.Map.initialize)
+		Marginalia.observe('glop:postdraw',Marginalia.Modules.Map.draw)
+
+		Marginalia.Client = {
+			initialize: function() {
+				$l('initialize Client')
+				Environment.observe('glop:draw', Marginalia.Client.draw)
+
+				// Setup code here:
+
+				Marginalia.Data.initialize()
+
+				// Environment.observe('mousedown', Client.add)
+			},
+			draw: function() {
+				// per-frame code here:
+
+				$('globalWrapper').style.width = 600+'px'
+				$('globalWrapper').style.left = (Glop.width/2-300)+'px'
+				
+				// clear the canvas if you want to:
+				$C.clear()
+			},
+
+		}
+
+		// tie bootup to what we've written here: 
+		document.observe('environment:init', Marginalia.Client.initialize)
+</script>
+</body>
+</html>

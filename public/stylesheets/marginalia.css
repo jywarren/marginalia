@@ -1,0 +1,10 @@
+#marginalia {
+	width:1000px;
+	text-align:center;
+	position:absolute;
+	z-index:2;
+	background:white;
+	-moz-opacity: 0.8;
+	opacity:.8;
+	filter:alpha(opacity=80);
+}

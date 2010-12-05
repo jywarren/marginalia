@@ -1,0 +1,6 @@
+*/database.yml
+*.svn
+*.swp
+*.swo
+.DS_Store
+

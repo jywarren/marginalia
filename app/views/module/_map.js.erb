@@ -1,0 +1,88 @@
+Number.prototype.toRad = function() {  // convert degrees to radians
+  return this * Math.PI / 180;
+}
+
+Number.prototype.toDeg = function() {  // convert radians to degrees (signed)
+  return this * 180 / Math.PI;
+}
+
+Number.prototype.toBrng = function() {  // convert radians to degrees (as bearing: 0...360)
+  return (this.toDeg()+360) % 360;
+}
+
+Marginalia.Modules.Map = {
+	x: 486,
+	y: 255,
+	authors: [],
+	lines: [],
+	initialize: function() {
+		$l('booting Map')
+		Marginalia.Modules.Map.bg_image = new Image
+		Marginalia.Modules.Map.bg_image.src = '/images/world.png'
+		Marginalia.Data.authors.each(function(author,index) {
+			if (author.anon == true) {
+				Geocoder.ip_geocode(author.user,function(response) {
+					Marginalia.Data.authors.unshift(Marginalia.Data.authors.splice(index,1))
+					author.location = response['location']
+					author.distance = Marginalia.Modules.Map.haversine(author.location.lat,author.location.lon,Marginalia.article.lat,Marginalia.article.lon)
+					if (author['distance']) {
+						var line = new Marginalia.Modules.Map.Line(author)
+						Marginalia.Modules.Map.lines.push(line)
+					}
+				})
+			}
+		})
+	},
+	draw: function() {
+		$C.save()
+		$C.translate(Marginalia.Modules.Map.x,Marginalia.Modules.Map.y)
+		$C.rotate(0.2)
+		$C.scale(1.8,1.8)
+		Marginalia.Modules.Map.lines.each(function(line){
+			line.draw()
+		})
+		$C.restore()
+	},
+	haversine: function(lat1,lon1,lat2,lon2) {
+		var R = 6371 // km
+		var dLat = (lat2-lat1).toRad()
+		var dLon = (lon2-lon1).toRad()
+		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		        Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+		        Math.sin(dLon/2) * Math.sin(dLon/2)
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+		return R * c
+	},
+	Line: Class.create({
+		initialize: function(author) {
+			this.x = Projection.lon_to_x(Marginalia.article.lon)
+			this.y = Projection.lat_to_y(Marginalia.article.lat)
+			this.x2 = Projection.lon_to_x(author.location.lon)
+			this.y2 = Projection.lat_to_y(author.location.lat)
+			this.color = this.color(author['user'])
+			// if (author['anon']) {
+			// 	this.color = '#900'
+			// } else if (author['bot']) {
+			// 	this.color = '#00a'
+			// } else if (author['sysop']) {
+			// 	this.color = '#0a0'
+			// } else {
+			// 	this.color = '#000'
+			// }
+		},
+		draw: function() {
+			$C.save()
+				$C.stroke_style(this.color)
+				$C.opacity(0.5)
+				$C.line_width(1)
+				$C.begin_path()
+				$C.move_to(this.x,this.y)
+				$C.line_to(this.x2,this.y2)
+				$C.stroke()
+			$C.restore()
+		},
+		color: function(text) {
+			return "#"+(parseInt((text),36).toString(16)+"000000").truncate(6,"")	
+		},
+	}),
+}

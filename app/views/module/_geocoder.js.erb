@@ -1,0 +1,41 @@
+// Geocoder.geocode('new york','my_function')
+	// default is google geocoding
+// Geocoder.google_geocode('new york',my_function)
+// Geocoder.ip_geocode('new york',my_function)
+	// IP-based geocoding requires a local proxy
+	// sorry for the inconsistency - function is NOT in quotations - it's a reference
+var Geocoder = {
+	google_api_key: 'ABQIAAAANO6Yx8ihhesSqnPHx9a3RxQWBoXWBrlkEUL-tdL_AsWXzvTH0xT-5lfSNkW4zpDMdK9jmjmggAHvYw',
+	// service can only be 'google' for now; later we'll add yahoo, geonames, etc.
+	service: 'google',
+	geocode: function(location,callback) {
+		if (this.service == 'google') {
+			return this.google_geocode(location,callback)
+		}
+		// other geocoders here
+	},
+	google_geocode: function(location,callback) {
+		this.parse_jsonp('http://maps.google.com/maps/geo?output=json&oe=utf8&sensor=false&key=' + this.google_api_key + '&q='+location,callback)				
+	},
+	// this accepts a callback without quotations - a reference to a function:
+	ip_geocode: function(location,callback) {
+		// http://freegeoip.appspot.com/
+		// this requires a local proxy... the service does not provide JSONP
+		// 		http://freegeoip.appspot.com/json/18.85.23.20
+		// so we must use it via our own server:
+		// 		/ip_geocode/18.85.23.20
+		new Ajax.Request('/ip_geocode/'+location,{
+			method: 'get',
+			onSuccess: function(response) {
+				// console.log(response.responseText.evalJSON())
+				callback(response.responseText.evalJSON())
+			}
+		})
+	},
+	parse_jsonp: function(src,callback) {
+		var script= document.createElement('script')
+		script.type= 'text/javascript'
+		script.src= src+'&callback='+callback
+		document.getElementsByTagName('head')[0].appendChild(script)
+	}
+}
