@@ -3,6 +3,6 @@
 *.swp
 *.swo
 .DS_Store
-/log/*
-/tmp/*
+log/*
+tmp/*
 
