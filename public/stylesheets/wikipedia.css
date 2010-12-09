@@ -27,6 +27,7 @@ a:hover {
 }
 
 #globalWrapper {
+	width:600px;
 	position:absolute;
 	top: 300px;
 	z-index:2;
@@ -85,3 +86,4 @@ table#toc ul {
 table#toc ul li {
 	list-style:none;
 }
+

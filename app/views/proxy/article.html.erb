@@ -1,4 +1,6 @@
+<div id='globalWrapper'>
 <%= @body %>
+</div>
 
 <div id='marginalia'>
 	<h3>You're viewing this page through <a href='http://marginalia.media.mit.edu'>Marginalia</a></h3>
@@ -88,8 +90,8 @@
 				// per-frame code here:
 
 				$C.clear()
-				$('globalwrapper').style.width = 600+'px'
-				$('globalwrapper').style.left = (Glop.width/2-300)+'px'
+				$('globalWrapper').style.width = 600+'px'
+				$('globalWrapper').style.left = (Glop.width/2-300)+'px'
 				
 				// clear the canvas if you want to:
 			},
