@@ -19,6 +19,11 @@
 <script src="/projection.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 
+		function find(q) {
+			q = q.gsub(/ /,'_')
+			document.location = "/wiki/"+q
+		}
+
 		// Initialize our project:
 		Environment.setup({
 			width:1000,
