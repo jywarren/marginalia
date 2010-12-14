@@ -3,7 +3,13 @@
 </div>
 
 <div id='marginalia'>
-	<h3>You're viewing this page through <a href='http://marginalia.media.mit.edu'>Marginalia</a></h3>
+	<h3>You're viewing this page through <a href='/'>Marginalia</a> | 
+		<form style="display:inline;" id="query" action="javascript:void(0);" method="get" accept-charset="utf-8" onSubmit="find($('find_field').value)"> 
+			Search Wikipedia: 
+			<input id="find_field" style="width:300px;" tabindex="3" type="text" name="id" value=""> 
+			<input type="button" name="some_name" tabindex="4" value="Go"> 
+		</form>
+	</h3> 
 </div>
 
 <link rel="stylesheet" href="/stylesheets/marginalia.css" type="text/css" media="screen" title="no title" charset="utf-8">
